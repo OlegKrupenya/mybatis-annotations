@@ -8,6 +8,7 @@ import com.testdev.domain.Employee;
 
 
 public interface IEmployeeDao {
+	@Select("select * from employees")
 	public List<Employee> getEmployees();
 	@Select("SELECT * FROM employees WHERE employee_id = #{employeeId}")
 	public Employee getEmployeeById(Long employeeId);

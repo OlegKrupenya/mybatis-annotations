@@ -1,6 +1,7 @@
 package com.testdev.main;
 
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -18,13 +19,16 @@ public class App {
                 .build(inputStream);
         sqlSessionFactory.getConfiguration().addMapper(IEmployeeDao.class);
         sqlSessionFactory.getConfiguration().setMapUnderscoreToCamelCase(true);
-        SqlSession session = sqlSessionFactory.openSession();
-        try {
+        
+        try (SqlSession session = sqlSessionFactory.openSession();) {
             IEmployeeDao dao = session.getMapper(IEmployeeDao.class);
             Employee employee = dao.getEmployeeById(1L);
             System.out.println(employee.getEmployeeId());
-        } finally {
-            session.close();
+            
+            List<Employee> employees = dao.getEmployees();
+            for (Employee emp : employees) {
+				System.out.println(emp.getFirstName() + " " + emp.getLastName());
+			}
         }
     }
 }
