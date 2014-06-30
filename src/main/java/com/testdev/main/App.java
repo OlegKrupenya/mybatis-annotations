@@ -25,9 +25,8 @@ public class App {
             Employee employee = dao.getEmployeeById(1L);
             System.out.println(employee.getEmployeeId());
             
-            Employee employeeToUpdate = dao.getEmployeeById(1L);
-            employeeToUpdate.setLastName("Trieber Jr.");
-            dao.updateEmployee(employeeToUpdate);
+            Employee employeeToDelete = dao.getEmployeeById(5L);
+            dao.deleteEmployee(employeeToDelete);
             session.commit();
             
             List<Employee> employees = dao.getEmployees();

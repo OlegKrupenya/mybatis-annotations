@@ -24,6 +24,6 @@ public interface IEmployeeDao {
 	@Update("update employees set first_name = #{firstName}, last_name = #{lastName}, age = #{age} where employee_id = #{employeeId}")
 	public void updateEmployee(Employee employeeToUpdate);
 
-	@Delete("delete employees where employee_id = #{employeeId}")
+	@Delete("delete from employees where employee_id = #{employeeId}")
 	public void deleteEmployee(Employee employeeToDelete);
 }
