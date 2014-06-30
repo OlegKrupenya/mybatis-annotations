@@ -25,6 +25,13 @@ public class App {
             Employee employee = dao.getEmployeeById(1L);
             System.out.println(employee.getEmployeeId());
             
+            Employee employeeToAdd = new Employee();
+            employeeToAdd.setAge((short) 47);
+            employeeToAdd.setFirstName("Sonya");
+            employeeToAdd.setLastName("Jackson");
+            dao.addEmployee(employeeToAdd);
+            session.commit();
+            
             List<Employee> employees = dao.getEmployees();
             for (Employee emp : employees) {
 				System.out.println(emp.getFirstName() + " " + emp.getLastName());
